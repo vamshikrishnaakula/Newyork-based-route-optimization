@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School Bus Optimizer</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workbench" aria-labelledby="page-title">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">MILP route pairing</p>
+            <h1 id="page-title">School Bus Optimizer</h1>
+          </div>
+          <button id="solveButton" class="primary-button" type="button">Optimize routes</button>
+        </div>
+
+        <section class="summary-strip" aria-label="Optimization summary">
+          <article class="metric">
+            <span>Total runs</span>
+            <strong id="totalRuns">10</strong>
+          </article>
+          <article class="metric">
+            <span>Pairings</span>
+            <strong id="pairingsFound">-</strong>
+          </article>
+          <article class="metric">
+            <span>Buses needed</span>
+            <strong id="busesNeeded">-</strong>
+          </article>
+          <article class="metric status-metric">
+            <span>Status</span>
+            <strong id="solverStatus">Ready</strong>
+          </article>
+        </section>
+
+        <section class="data-section" aria-labelledby="input-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="input-title">Run Inputs</h2>
+              <p>Adjust run times, bell windows, and coordinates, then optimize.</p>
+            </div>
+            <div class="button-row">
+              <button id="addRunButton" type="button">Add run</button>
+              <button id="resetButton" type="button">Reset sample</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="editable-table">
+              <thead>
+                <tr>
+                  <th>Run ID</th>
+                  <th>Run</th>
+                  <th>School</th>
+                  <th>Type</th>
+                  <th>Run min</th>
+                  <th>Start X</th>
+                  <th>Start Y</th>
+                  <th>Bell</th>
+                  <th>Window</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="runsBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="results-grid" aria-label="Optimization results">
+          <article class="panel">
+            <div class="section-heading compact">
+              <div>
+                <h2>Schedule</h2>
+                <p>Start times selected inside each allowed window.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Run</th>
+                    <th>Type</th>
+                    <th>Early</th>
+                    <th>Late</th>
+                    <th>Start</th>
+                    <th>OK</th>
+                  </tr>
+                </thead>
+                <tbody id="scheduleBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading compact">
+              <div>
+                <h2>Bus Routes</h2>
+                <p>Each chain is one bus assignment.</p>
+              </div>
+            </div>
+            <div id="routesList" class="route-list"></div>
+          </article>
+        </section>
+
+        <section class="results-grid" aria-label="Pairing and verification details">
+          <article class="panel">
+            <div class="section-heading compact">
+              <div>
+                <h2>Pairings</h2>
+                <p>Direct links selected by the optimizer.</p>
+              </div>
+            </div>
+            <div id="pairingsList" class="pairing-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading compact">
+              <div>
+                <h2>Verification</h2>
+                <p>Constraint checks from the solved schedule.</p>
+              </div>
+            </div>
+            <div id="checksList" class="check-list"></div>
+          </article>
+        </section>
+
+        <section class="panel matrix-panel" aria-labelledby="matrix-title">
+          <div class="section-heading compact">
+            <div>
+              <h2 id="matrix-title">Deadhead Matrix</h2>
+              <p>Minutes from a completed run to the next run's school category.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="matrixTable"></table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <template id="runRowTemplate">
+      <tr>
+        <td><input name="run_id" type="text"></td>
+        <td><input name="run_no" type="number" step="1"></td>
+        <td><input name="school_type_id" type="number" step="1"></td>
+        <td>
+          <select name="category">
+            <option value="ES">ES</option>
+            <option value="MS">MS</option>
+            <option value="HS">HS</option>
+          </select>
+        </td>
+        <td><input name="run_time_min" type="number" step="0.1"></td>
+        <td><input name="start_x" type="number" step="0.000001"></td>
+        <td><input name="start_y" type="number" step="0.000001"></td>
+        <td><input name="bell_time_min" type="number" step="0.1"></td>
+        <td><input name="window_min" type="number" step="0.1"></td>
+        <td><button class="small-button remove-row" type="button">Remove</button></td>
+      </tr>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

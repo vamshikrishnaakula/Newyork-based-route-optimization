@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/bus_ui/index.html"
+    },
+    {
+      "source": "/style.css",
+      "destination": "/bus_ui/style.css"
+    },
+    {
+      "source": "/app.js",
+      "destination": "/bus_ui/app.js"
+    }
+  ],
+  "functions": {
+    "api/**/*.py": {
+      "maxDuration": 30
+    }
+  }
+}
