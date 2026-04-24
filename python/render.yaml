@@ -3,4 +3,4 @@ services:
     name: school-bus-optimizer
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python bus_ui_server.py
+    startCommand: streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
