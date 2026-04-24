@@ -27,341 +27,152 @@ def inject_styles() -> None:
         """
         <style>
             :root {
-                --bg: #f5f1e8;
-                --surface: rgba(255, 252, 246, 0.88);
-                --surface-strong: #fffdf8;
-                --surface-soft: rgba(245, 238, 224, 0.72);
-                --border: rgba(84, 72, 56, 0.14);
-                --ink: #1f2933;
-                --muted: #6b7280;
-                --accent: #d97706;
-                --accent-deep: #0f766e;
-                --accent-soft: #fff3dd;
-                --success: #166534;
-                --shadow: 0 24px 60px rgba(28, 24, 19, 0.08);
+                --surface: #ffffff;
+                --page: #f6f8f6;
+                --border: #d7ded7;
+                --text: #162117;
+                --muted: #6c776d;
+                --soft: #eef5ee;
+                --ok-bg: #dcfce7;
+                --ok-text: #166534;
             }
 
             .stApp {
-                background:
-                    radial-gradient(circle at top left, rgba(15, 118, 110, 0.11), transparent 30%),
-                    radial-gradient(circle at top right, rgba(217, 119, 6, 0.14), transparent 26%),
-                    linear-gradient(180deg, #fbf7ef 0%, var(--bg) 48%, #efe6d3 100%);
-                color: var(--ink);
+                background: var(--page);
+                color: var(--text);
             }
 
             .block-container {
-                max-width: 1380px;
-                padding-top: 2.25rem;
-                padding-bottom: 3rem;
+                max-width: 1820px;
+                padding-top: 0.35rem;
+                padding-bottom: 1rem;
             }
 
-            h1, h2, h3 {
-                color: var(--ink);
-                letter-spacing: -0.02em;
+            [data-testid="stSidebar"],
+            [data-testid="collapsedControl"] {
+                display: none;
             }
 
-            h1, h2 {
-                font-family: Georgia, "Times New Roman", serif;
-            }
-
-            [data-testid="stSidebar"] {
-                background: linear-gradient(180deg, #17332f 0%, #102522 100%);
-                border-right: 1px solid rgba(255, 255, 255, 0.08);
-            }
-
-            [data-testid="stSidebar"] * {
-                color: #f8fafc;
-            }
-
-            [data-testid="stSidebar"] .stButton > button {
-                border-radius: 999px;
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                min-height: 46px;
+            .app-kicker {
+                color: #2d6b41;
+                font-size: 0.53rem;
                 font-weight: 700;
-            }
-
-            [data-testid="stSidebar"] .stButton > button[kind="primary"] {
-                background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-                border-color: transparent;
-                color: #111827;
-                box-shadow: 0 14px 30px rgba(217, 119, 6, 0.32);
-            }
-
-            .hero-card,
-            .glass-card {
-                border: 1px solid var(--border);
-                box-shadow: var(--shadow);
-                backdrop-filter: blur(14px);
-            }
-
-            .hero-card {
-                background:
-                    linear-gradient(135deg, rgba(15, 118, 110, 0.96) 0%, rgba(19, 78, 74, 0.92) 52%, rgba(12, 37, 42, 0.95) 100%);
-                border-radius: 28px;
-                padding: 1.8rem 1.9rem;
-                color: #f8fafc;
-                margin-bottom: 1.25rem;
-                overflow: hidden;
-                position: relative;
-            }
-
-            .hero-card:before,
-            .hero-card:after {
-                content: "";
-                position: absolute;
-                border-radius: 999px;
-                opacity: 0.28;
-            }
-
-            .hero-card:before {
-                width: 320px;
-                height: 320px;
-                right: -90px;
-                top: -110px;
-                background: radial-gradient(circle, rgba(251, 191, 36, 0.95) 0%, transparent 65%);
-            }
-
-            .hero-card:after {
-                width: 260px;
-                height: 260px;
-                left: -100px;
-                bottom: -130px;
-                background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, transparent 70%);
-            }
-
-            .hero-eyebrow {
-                display: inline-block;
-                padding: 0.32rem 0.78rem;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.12);
-                border: 1px solid rgba(255, 255, 255, 0.14);
-                font-size: 0.76rem;
-                letter-spacing: 0.16em;
+                letter-spacing: 0.08em;
                 text-transform: uppercase;
+                margin-bottom: 0.05rem;
+            }
+
+            .app-title {
+                font-size: 1.8rem;
                 font-weight: 700;
-                margin-bottom: 0.9rem;
+                line-height: 1.1;
+                margin: 0 0 0.25rem;
             }
 
-            .hero-title {
-                font-family: Georgia, "Times New Roman", serif;
-                font-size: clamp(2rem, 4vw, 3.6rem);
-                line-height: 0.95;
-                margin: 0;
-                max-width: 720px;
+            .summary-card,
+            .section-shell {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 4px;
             }
 
-            .hero-copy {
-                margin: 0.9rem 0 0;
-                max-width: 740px;
-                font-size: 1rem;
-                color: rgba(248, 250, 252, 0.86);
+            .summary-card {
+                min-height: 52px;
+                padding: 0.38rem 0.5rem;
             }
 
-            .hero-strip {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 0.9rem;
-                margin-top: 1.35rem;
+            .metric-label {
+                color: var(--muted);
+                font-size: 0.52rem;
+                margin-bottom: 0.15rem;
             }
 
-            .hero-chip {
-                background: rgba(255, 255, 255, 0.12);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                padding: 0.95rem 1rem;
+            .metric-value {
+                font-size: 1.35rem;
+                font-weight: 700;
+                line-height: 1;
             }
 
-            .hero-chip strong {
-                display: block;
-                font-size: 1rem;
-                margin-bottom: 0.24rem;
+            .metric-status {
+                font-size: 0.62rem;
+                font-weight: 600;
+                line-height: 1.35;
+                white-space: normal;
+                word-break: break-word;
             }
 
-            .hero-chip span {
-                color: rgba(248, 250, 252, 0.78);
-                font-size: 0.9rem;
+            .section-shell {
+                padding: 0.32rem 0.42rem 0.38rem;
+                margin-top: 0.35rem;
             }
 
             .section-title {
-                font-family: Georgia, "Times New Roman", serif;
-                font-size: 1.35rem;
-                margin: 0 0 0.2rem;
+                font-size: 0.75rem;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.2;
             }
 
             .section-copy {
                 color: var(--muted);
-                margin: 0 0 1rem;
+                font-size: 0.53rem;
+                line-height: 1.25;
+                margin: 0.05rem 0 0;
             }
 
-            .glass-card {
+            .item-card {
                 background: var(--surface);
-                border-radius: 24px;
-                padding: 1.15rem 1.15rem 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .metric-card {
-                background: linear-gradient(180deg, rgba(255, 253, 248, 0.95) 0%, rgba(247, 241, 230, 0.86) 100%);
                 border: 1px solid var(--border);
-                border-radius: 22px;
-                box-shadow: var(--shadow);
-                padding: 1rem 1.05rem;
-                min-height: 126px;
+                border-radius: 4px;
+                padding: 0.36rem 0.42rem;
+                margin-bottom: 0.24rem;
             }
 
-            .metric-label {
-                font-size: 0.8rem;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
+            .item-title {
+                font-size: 0.63rem;
+                font-weight: 700;
+                margin-bottom: 0.1rem;
+            }
+
+            .item-copy {
                 color: var(--muted);
-                margin-bottom: 0.5rem;
+                font-size: 0.54rem;
+                line-height: 1.25;
+            }
+
+            .ok-chip {
+                display: inline-block;
+                margin-top: 0.18rem;
+                padding: 0.06rem 0.28rem;
+                border-radius: 4px;
+                background: var(--ok-bg);
+                color: var(--ok-text);
+                font-size: 0.5rem;
                 font-weight: 700;
             }
 
-            .metric-value {
-                font-size: clamp(1.9rem, 3vw, 2.6rem);
-                font-weight: 800;
-                line-height: 0.95;
-                color: var(--ink);
-            }
-
-            .metric-note {
-                margin-top: 0.55rem;
-                color: var(--muted);
-                font-size: 0.92rem;
-                line-height: 1.35;
-            }
-
-            .status-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                border-radius: 999px;
-                background: var(--accent-soft);
-                color: #7c4700;
-                padding: 0.42rem 0.85rem;
-                font-size: 0.84rem;
-                font-weight: 700;
-            }
-
-            .route-card,
-            .check-card {
-                background: var(--surface-strong);
+            .stButton > button {
+                min-height: 26px;
+                padding: 0.1rem 0.45rem;
+                border-radius: 4px;
                 border: 1px solid var(--border);
-                border-radius: 18px;
-                padding: 0.95rem 1rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .route-title,
-            .check-title {
-                font-weight: 800;
-                margin-bottom: 0.25rem;
-                color: var(--ink);
-            }
-
-            .route-meta,
-            .check-meta {
-                color: var(--muted);
-                font-size: 0.93rem;
-                line-height: 1.4;
-            }
-
-            .route-pill,
-            .check-pill {
-                display: inline-flex;
-                align-items: center;
-                border-radius: 999px;
-                padding: 0.18rem 0.6rem;
-                margin-top: 0.7rem;
-                font-size: 0.78rem;
-                font-weight: 700;
-            }
-
-            .route-pill {
-                background: rgba(15, 118, 110, 0.12);
-                color: var(--accent-deep);
-            }
-
-            .check-pill.ok {
-                background: rgba(22, 101, 52, 0.12);
-                color: var(--success);
-            }
-
-            .check-pill.fail {
-                background: rgba(185, 28, 28, 0.1);
-                color: #b91c1c;
+                background: var(--surface);
+                font-size: 0.6rem;
+                font-weight: 600;
             }
 
             div[data-testid="stDataEditor"],
             div[data-testid="stDataFrame"] {
-                border-radius: 18px;
-                overflow: hidden;
                 border: 1px solid var(--border);
-                background: var(--surface-strong);
-            }
-
-            div[data-baseweb="tab-list"] {
-                gap: 0.5rem;
-            }
-
-            button[data-baseweb="tab"] {
-                border-radius: 999px !important;
-                background: rgba(255, 255, 255, 0.72) !important;
-                border: 1px solid var(--border) !important;
-                padding: 0.35rem 0.9rem !important;
-            }
-
-            button[data-baseweb="tab"][aria-selected="true"] {
-                background: rgba(217, 119, 6, 0.14) !important;
-                color: #7c4700 !important;
-                border-color: rgba(217, 119, 6, 0.24) !important;
+                border-radius: 4px;
+                overflow: hidden;
+                background: var(--surface);
             }
 
             .stAlert {
-                border-radius: 18px;
-            }
-
-            @media (max-width: 900px) {
-                .hero-strip {
-                    grid-template-columns: 1fr;
-                }
+                border-radius: 4px;
             }
         </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-def render_hero(payload: dict | None) -> None:
-    total_runs = payload["total_runs"] if payload else len(st.session_state.runs_df)
-    buses_needed = payload["buses_needed"] if payload else "Pending"
-    status = payload["status"] if payload else "Ready to optimize"
-
-    st.markdown(
-        f"""
-        <section class="hero-card">
-            <div class="hero-eyebrow">Route Pairing Studio</div>
-            <h1 class="hero-title">Design a sharper school bus schedule.</h1>
-            <p class="hero-copy">
-                Tune bell windows, run lengths, and school coordinates, then let the optimizer build
-                cleaner pairings with fewer buses and clearer feasibility checks.
-            </p>
-            <div class="hero-strip">
-                <div class="hero-chip">
-                    <strong>{total_runs} active runs</strong>
-                    <span>Editable input grid with reset and add-row support.</span>
-                </div>
-                <div class="hero-chip">
-                    <strong>{buses_needed} buses needed</strong>
-                    <span>Live summary from the most recent solve result.</span>
-                </div>
-                <div class="hero-chip">
-                    <strong>{status}</strong>
-                    <span>Solver feedback stays visible while you refine scenarios.</span>
-                </div>
-            </div>
-        </section>
         """,
         unsafe_allow_html=True,
     )
@@ -400,143 +211,133 @@ def solve_from_records(runs: list[dict]) -> dict:
     )
 
 
-def render_metric_card(label: str, value: str | int, note: str) -> None:
+def initialize_state() -> None:
+    if "runs_df" not in st.session_state:
+        st.session_state.runs_df = build_default_dataframe()
+    if "result_payload" not in st.session_state:
+        st.session_state.result_payload = solve_from_records(coerce_runs(st.session_state.runs_df))
+
+
+def section_header(title: str, copy: str) -> None:
     st.markdown(
         f"""
-        <div class="metric-card">
-            <div class="metric-label">{label}</div>
-            <div class="metric-value">{value}</div>
-            <div class="metric-note">{note}</div>
+        <div class="section-shell">
+            <div class="section-title">{title}</div>
+            <div class="section-copy">{copy}</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def render_metrics(payload: dict) -> None:
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        render_metric_card("Total runs", payload["total_runs"], "Every run currently included in the solve.")
-    with col2:
-        render_metric_card("Pairings", payload["pairings_found"], "Direct successor links selected by the model.")
-    with col3:
-        render_metric_card("Buses needed", payload["buses_needed"], "Estimated fleet requirement after chaining.")
-    with col4:
-        render_metric_card("Solver status", "Optimal" if "Optimal" in payload["status"] else "Review", payload["status"])
+def render_header() -> None:
+    st.markdown('<div class="app-kicker">MILP ROUTE PAIRING</div>', unsafe_allow_html=True)
+    st.markdown('<div class="app-title">School Bus Optimizer</div>', unsafe_allow_html=True)
 
 
-def render_routes(payload: dict) -> None:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Bus Routes</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<p class="section-copy">Each card is one bus chain in the solved plan.</p>',
-        unsafe_allow_html=True,
-    )
-
-    if payload["routes"]:
-        for route in payload["routes"]:
+def render_summary(payload: dict) -> None:
+    columns = st.columns([1, 1, 1, 1.6], gap="small")
+    rows = [
+        ("Total runs", payload["total_runs"], False),
+        ("Pairings", payload["pairings_found"], False),
+        ("Buses needed", payload["buses_needed"], False),
+        ("Status", payload["status"], True),
+    ]
+    for col, (label, value, is_status) in zip(columns, rows):
+        with col:
+            klass = "metric-status" if is_status else "metric-value"
             st.markdown(
                 f"""
-                <div class="route-card">
-                    <div class="route-title">Bus {route["bus"]}</div>
-                    <div class="route-meta">{' &rarr; '.join(route["runs"])}</div>
-                    <div class="route-pill">{route["run_count"]} run{"s" if route["run_count"] != 1 else ""}</div>
+                <div class="summary-card">
+                    <div class="metric-label">{label}</div>
+                    <div class="{klass}">{value}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-    else:
-        st.info("No routes are available yet.")
-    st.markdown("</div>", unsafe_allow_html=True)
 
 
-def render_pairings(payload: dict) -> None:
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Pairings</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<p class="section-copy">Selected links between runs with deadhead travel time.</p>',
-        unsafe_allow_html=True,
-    )
+def render_routes(payload: dict) -> None:
+    section_header("Bus Routes", "Each chain is one bus assignment.")
+    if not payload["routes"]:
+        st.info("No bus routes assigned.")
+        return
 
-    if payload["pairings"]:
-        st.dataframe(pd.DataFrame(payload["pairings"]), use_container_width=True, hide_index=True)
-    else:
-        st.info("No pairings found. Each run needs its own bus.")
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-def render_checks(payload: dict) -> None:
-    checks = payload["checks"]
-    check_rows = [
-        ("One successor per run", checks["one_successor_per_run"], "No run starts multiple downstream chains."),
-        ("One predecessor per run", checks["one_predecessor_per_run"], "No run is double-booked behind another run."),
-        ("Start times within bounds", checks["all_start_times_in_windows"], "All chosen starts stay inside the allowed window."),
-        ("Sequencing constraints", checks["all_pairings_sequence"], "Each bus can reach its next run before the next start."),
-    ]
-
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Verification</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<p class="section-copy">Constraint health checks from the current solution.</p>',
-        unsafe_allow_html=True,
-    )
-
-    for label, ok, detail in check_rows:
+    for route in payload["routes"]:
         st.markdown(
             f"""
-            <div class="check-card">
-                <div class="check-title">{label}</div>
-                <div class="check-meta">{detail}</div>
-                <div class="check-pill {'ok' if ok else 'fail'}">{'OK' if ok else 'Check needed'}</div>
+            <div class="item-card">
+                <div class="item-title">Bus {route["bus"]}</div>
+                <div class="item-copy">{' → '.join(route["runs"])}</div>
+                <div class="ok-chip">{route["run_count"]} run{"s" if route["run_count"] != 1 else ""}</div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-    if checks["sequencing"]:
-        with st.expander("Sequencing details", expanded=False):
-            st.dataframe(pd.DataFrame(checks["sequencing"]), use_container_width=True, hide_index=True)
-    st.markdown("</div>", unsafe_allow_html=True)
+
+def render_pairings(payload: dict) -> None:
+    section_header("Pairings", "Direct links selected by the optimizer.")
+    if not payload["pairings"]:
+        st.info("No pairings found. Each run needs its own bus.")
+        return
+
+    for pairing in payload["pairings"]:
+        st.markdown(
+            f"""
+            <div class="item-card">
+                <div class="item-title">{pairing["from"]} → {pairing["to"]}</div>
+                <div class="item-copy">Deadhead {pairing["deadhead_min"]:.2f} min</div>
+                <div class="ok-chip">Linked</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 
-def initialize_state() -> None:
-    if "runs_df" not in st.session_state:
-        st.session_state.runs_df = build_default_dataframe()
+def render_checks(payload: dict) -> None:
+    checks = payload["checks"]
+    items = [
+        ("One successor per run", checks["one_successor_per_run"], "No run starts two later runs."),
+        ("One predecessor per run", checks["one_predecessor_per_run"], "No run is assigned to two previous runs."),
+        ("Start windows", checks["all_start_times_in_windows"], "Every start time stays inside the allowed window."),
+        ("Sequencing", checks["all_pairings_sequence"], "Each paired bus reaches the next run on time."),
+    ]
 
-    if "result_payload" not in st.session_state:
-        default_runs = coerce_runs(st.session_state.runs_df)
-        st.session_state.result_payload = solve_from_records(default_runs)
+    section_header("Verification", "Constraint checks from the solved schedule.")
+    for label, ok, detail in items:
+        st.markdown(
+            f"""
+            <div class="item-card">
+                <div class="item-title">{label}</div>
+                <div class="item-copy">{detail}</div>
+                <div class="ok-chip">{'OK' if ok else 'Check needed'}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
 
 def main() -> None:
-    st.set_page_config(
-        page_title="School Bus Optimizer",
-        page_icon="🚌",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+    st.set_page_config(page_title="School Bus Optimizer", page_icon="🚌", layout="wide")
     inject_styles()
     initialize_state()
 
-    with st.sidebar:
-        st.markdown("### Mission Control")
-        st.caption("Adjust the sample, run optimization, and prep the app for deployment.")
-        if st.button("Reset sample", use_container_width=True):
-            st.session_state.runs_df = build_default_dataframe()
-            st.session_state.result_payload = solve_from_records(coerce_runs(st.session_state.runs_df))
-        optimize = st.button("Optimize routes", type="primary", use_container_width=True)
-        st.markdown("---")
-        st.markdown("**What this app gives you**")
-        st.markdown("Fewer buses, cleaner route chains, and visible feasibility checks.")
+    render_header()
+    render_summary(st.session_state.result_payload)
 
-    render_hero(st.session_state.result_payload)
+    section_header("Run Inputs", "Adjust run times, bell windows, and coordinates, then optimize.")
+    toolbar = st.columns([11.2, 1.1, 1.2], gap="small")
+    with toolbar[0]:
+        st.write("")
+    with toolbar[1]:
+        reset = st.button("Reset", use_container_width=True)
+    with toolbar[2]:
+        optimize = st.button("Optimize", use_container_width=True)
 
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Run Inputs</div>', unsafe_allow_html=True)
-    st.markdown(
-        '<p class="section-copy">Edit your runs directly in the table, then rerun the optimizer to compare scenarios.</p>',
-        unsafe_allow_html=True,
-    )
+    if reset:
+        st.session_state.runs_df = build_default_dataframe()
+        st.session_state.result_payload = solve_from_records(coerce_runs(st.session_state.runs_df))
 
     edited_df = st.data_editor(
         st.session_state.runs_df,
@@ -544,20 +345,49 @@ def main() -> None:
         use_container_width=True,
         hide_index=True,
         column_config={
-            "category": st.column_config.SelectboxColumn(
-                "category",
-                options=["ES", "MS", "HS"],
-                required=True,
-            ),
-            "run_no": st.column_config.NumberColumn("run_no", step=1),
-            "school_type_id": st.column_config.NumberColumn("school_type_id", step=1),
-            "run_time_min": st.column_config.NumberColumn("run_time_min", format="%.1f"),
-            "bell_time_min": st.column_config.NumberColumn("bell_time_min", format="%.1f"),
-            "window_min": st.column_config.NumberColumn("window_min", format="%.1f"),
+            "run_id": st.column_config.TextColumn("Run ID"),
+            "run_no": st.column_config.NumberColumn("Run", step=1),
+            "school_type_id": st.column_config.NumberColumn("School", step=1),
+            "category": st.column_config.SelectboxColumn("Type", options=["ES", "MS", "HS"], required=True),
+            "run_time_min": st.column_config.NumberColumn("Run min", format="%.1f"),
+            "start_x": st.column_config.NumberColumn("Start X", format="%.6f"),
+            "start_y": st.column_config.NumberColumn("Start Y", format="%.6f"),
+            "bell_time_min": st.column_config.NumberColumn("Bell", format="%.1f"),
+            "window_min": st.column_config.NumberColumn("Window", format="%.1f"),
         },
     )
     st.session_state.runs_df = edited_df
-    st.markdown("</div>", unsafe_allow_html=True)
+
+    add_cols = st.columns([11.7, 1.2], gap="small")
+    with add_cols[0]:
+        st.write("")
+    with add_cols[1]:
+        add_row = st.button("Add row", use_container_width=True)
+
+    if add_row:
+        next_index = len(st.session_state.runs_df) + 1
+        st.session_state.runs_df = pd.concat(
+            [
+                st.session_state.runs_df,
+                pd.DataFrame(
+                    [
+                        {
+                            "run_id": f"Run {next_index}",
+                            "run_no": next_index,
+                            "school_type_id": 1,
+                            "category": "ES",
+                            "run_time_min": 20.0,
+                            "start_x": 29.0,
+                            "start_y": 24.0,
+                            "bell_time_min": 190.0,
+                            "window_min": 15.0,
+                        }
+                    ]
+                ),
+            ],
+            ignore_index=True,
+        )
+        st.rerun()
 
     if optimize:
         try:
@@ -571,34 +401,35 @@ def main() -> None:
             return
 
     payload = st.session_state.result_payload
-    render_metrics(payload)
 
-    st.markdown(
-        f'<div class="status-badge">Current solve status: {payload["status"]}</div>',
-        unsafe_allow_html=True,
-    )
-    st.write("")
-
-    left, right = st.columns([1.35, 0.9], gap="large")
-    with left:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown('<div class="section-title">Operational Tables</div>', unsafe_allow_html=True)
-        st.markdown(
-            '<p class="section-copy">Review the schedule output and the deadhead matrix side by side.</p>',
-            unsafe_allow_html=True,
+    layout_left, layout_right = st.columns([2.35, 1.2], gap="small")
+    with layout_left:
+        section_header("Schedule", "Start times selected inside each allowed window.")
+        schedule_df = pd.DataFrame(payload["schedule"])[
+            ["run_id", "category", "early_bound", "late_bound", "start_time", "ok"]
+        ].rename(
+            columns={
+                "run_id": "Run",
+                "category": "Type",
+                "early_bound": "Early",
+                "late_bound": "Late",
+                "start_time": "Start",
+                "ok": "OK",
+            }
         )
-        schedule_tab, matrix_tab = st.tabs(["Schedule", "Deadhead Matrix"])
-        with schedule_tab:
-            st.dataframe(pd.DataFrame(payload["schedule"]), use_container_width=True, hide_index=True)
-        with matrix_tab:
-            matrix_df = pd.DataFrame(payload["deadhead_matrix"], columns=payload["ids"], index=payload["ids"])
-            st.dataframe(matrix_df, use_container_width=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with right:
+        st.dataframe(schedule_df, use_container_width=True, hide_index=True)
+    with layout_right:
         render_routes(payload)
+
+    layout_left, layout_right = st.columns([2.35, 1.2], gap="small")
+    with layout_left:
         render_pairings(payload)
+    with layout_right:
         render_checks(payload)
+
+    section_header("Deadhead Matrix", "Minutes from a completed run to the next run's school category.")
+    matrix_df = pd.DataFrame(payload["deadhead_matrix"], columns=payload["ids"], index=payload["ids"])
+    st.dataframe(matrix_df, use_container_width=True)
 
 
 if __name__ == "__main__":
