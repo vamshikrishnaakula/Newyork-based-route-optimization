@@ -1,4 +1,5 @@
 import json
+import os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -192,12 +193,17 @@ class BusUIHandler(SimpleHTTPRequestHandler):
 
 
 def main():
-    host = "127.0.0.1"
-    port = 8000
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", "8000"))
     server = ThreadingHTTPServer((host, port), BusUIHandler)
     print(f"School Bus Optimizer UI running at http://{host}:{port}")
     print("Press Ctrl+C to stop.")
-    server.serve_forever()
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nShutting down server...")
+    finally:
+        server.server_close()
 
 
 if __name__ == "__main__":
