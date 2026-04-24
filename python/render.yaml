@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: school-bus-optimizer
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python bus_ui_server.py
