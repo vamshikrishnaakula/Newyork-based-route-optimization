@@ -3,7 +3,6 @@ import os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
-
 from school_bus_optimization_based_on_excel_model import BIG_M, RUNS_RAW, solve
 
 
@@ -162,11 +161,10 @@ class BusUIHandler(SimpleHTTPRequestHandler):
         data = json.dumps(payload).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
-        self.send_header("Access-Control-Allow-Origin", "*")
         self.wfile.write(data)
-
     def do_OPTIONS(self):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -202,8 +200,9 @@ class BusUIHandler(SimpleHTTPRequestHandler):
 
 
 def main():
+    # host = os.environ.get("HOST", "127.0.0.1")
     host = os.environ.get("HOST", "0.0.0.0")
-    port = int(os.environ.get("PORT", "8000"))
+    port = int(os.environ.get("PORT", "8080"))
     server = ThreadingHTTPServer((host, port), BusUIHandler)
     print(f"School Bus Optimizer UI running at http://{host}:{port}")
     print("Press Ctrl+C to stop.")
